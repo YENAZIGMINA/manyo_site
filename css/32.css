@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+* {margin: 0; padding: 0;}
+li {list-style: none;}
+a {text-decoration: none; color: inherit;}
+body {color: #333;}
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mobile {display: none;}
+
+
+/* 💛 header */
+header .inner {
+    max-width: 1600px;
+    width: 95%; /* 1600px보다 작은화면일 때 비율 */
+    margin: 0 auto;
+}
+header .inner .hd_top {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 끝 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    font-size: 14px;
+}
+header .inner .hd_top li {
+    margin-left: 20px;
+    position: relative; /* li 가상선택자의 기준 */
+}
+header .inner .hd_top li::before {
+    content: ''; /* 가상선택자-필수 */
+    width: 1px; height: 10px;
+    background-color: #000;
+    position: absolute;
+    top: 50%; left: -10px;
+    transform: translateY(-50%);
+}
+header .inner .hd_top li:first-child::before {
+    display: none; /* 첫번째 가상선택자 막대 숨기기 */
+}
+header .inner .hd_bottom {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 메뉴작성할때 - 이미지는 line-hight 안먹힘, 그때 이미지는 position-absol~로 이용해서 정렬 */
+}
+header .inner .hd_bottom h1 {
+    width: 180px; /* 로고사이즈 잡아줘야 나타남 */
+}
+header .inner .hd_bottom h1 a img {
+    height: 40px; /* 로고사이즈 잡아줘야 나타남 */
+}
+
+/* 1차메뉴 - 2차메뉴가 있다면 align-item말고, line-hight로 작성하면 좀 더 편함 */
+header .inner .hd_bottom .pc {
+    /* width: calc(100% - 200px); */
+    height: 100%; /* 1) 2차메뉴 안사라지게 h값 설정 */
+}
+header .inner .hd_bottom .pc .gnb {
+    height: 100%; /* 1-1) 2차메뉴 안사라지게 h값 설정 */
+}
+header .inner .hd_bottom .pc .gnb .depth01 {
+    display: inline-block;
+    position: relative;
+    padding: 0 30px; /* 패딩값을 주면 2차메뉴까지 영향을 줌 */
+    height: 100%; /* 1-1) 2차메뉴 안사라지게 h값 설정 */
+    line-height: 70px; 
+    /* 2) 2차메뉴 안사라지게 하기위해 h값 설정하면 1차메뉴가 올라감 -> 해결위해 line-height값 설정하면
+          이후에 2차메뉴 넓이가 넓어짐 */
+}
+header .inner .hd_bottom .pc .gnb .depth01 a {
+    font-family: 'GmarketSansMedium';
+}
+/* 2차메뉴 */
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 {
+    position: absolute;
+    top: 70px; /* 4) 올라온 2차메뉴 다시 밑으로 내리기 */
+    left: 50%; /* 2차메뉴 수평중앙으로 맞추기위해 50% 값 설정 */
+    transform: translateX(-50%);
+    width: 180%; /* 각각 bg 겹쳐도 상관없음 (hover마우스 올리면 각각 나타나니까) */
+    background-color: rgba(137, 90, 161, 0.632);
+    color: #fff;
+    text-align: center;
+    display: none;
+}
+header .inner .hd_bottom .pc .gnb .depth01:hover .depth02 {
+    display: block;
+}
+header .inner .hd_bottom .pc .gnb .depth02 a {
+    font-family: 'GmarketSansLight';
+}
+header .inner .hd_bottom .pc .gnb .depth01 .depth02 li {
+    padding: 15px;
+    line-height: 1.5; /* 3) 해결위해, 높이 초기화 -> 2차메뉴 살짝 올라가게 되는데 */
+}
+
+
+/* 💛 main_visual */
+.main_visual {
+    height: 100vh;
+    position: relative;
+    z-index: -20; /* 2) header안나올 때는 z-index로 위치바꿔서 설정 */
+}
+.main_visual div {
+    max-width: 1600px;
+    width: 95%; /* 1) % 들어가면 margin 0 auto 안먹힘 */
+    position: absolute; /* 2)포지션으로 잡아줘야 함 */
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.main_visual div h2 {
+    font-family: 'yg-jalnan';
+    font-size: 50px;
+    color: #563e71;
+    margin-bottom: 10px;
+}
+.main_visual div p {
+    font-family: 'GmarketSansMedium';
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.main_visual div span {}
+.main_visual div a {
+    font-family: 'GmarketSansLight';
+    display: block; /* span태그 인라인요소라서 블럭요소로 변경 */
+    width: 150px; height: 45px;
+    border: 2px solid #333;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 100px;
+}
+.main_visual img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+} /* 1) 여기까지 작성하면 header가 안나올 것 -> 메인비주얼 z-index 설정해야 함! */
