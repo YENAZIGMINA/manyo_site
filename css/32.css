@@ -3,7 +3,10 @@
 * {margin: 0; padding: 0;}
 li {list-style: none;}
 a {text-decoration: none; color: inherit;}
-body {color: #333;}
+body {
+    color: #333;
+    overflow-x: hidden; /* ✔ 가로스크롤바 없애기 */
+}
 @font-face {
     font-family: 'yg-jalnan';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
@@ -11,14 +14,13 @@ body {color: #333;}
     font-style: normal;
 }
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
     font-style: normal;
-}
-@font-face {
-    font-family: 'GmarketSansLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+}@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -33,6 +35,7 @@ header .inner {
     margin: 0 auto;
 }
 header .inner .hd_top {
+    font-family: 'LINESeedKR-Bd';
     height: 50px;
     display: flex;
     justify-content: flex-end; /* 오른쪽 끝 정렬 */
@@ -86,7 +89,8 @@ header .inner .hd_bottom .pc .gnb .depth01 {
           이후에 2차메뉴 넓이가 넓어짐 */
 }
 header .inner .hd_bottom .pc .gnb .depth01 a {
-    font-family: 'GmarketSansMedium';
+    font-family: 'LINESeedKR-Bd';
+    font-size: 20px;
 }
 /* 2차메뉴 */
 header .inner .hd_bottom .pc .gnb .depth01 .depth02 {
@@ -104,7 +108,8 @@ header .inner .hd_bottom .pc .gnb .depth01:hover .depth02 {
     display: block;
 }
 header .inner .hd_bottom .pc .gnb .depth02 a {
-    font-family: 'GmarketSansLight';
+    font-family: 'SUIT-Regular';
+    font-size: 17px;
 }
 header .inner .hd_bottom .pc .gnb .depth01 .depth02 li {
     padding: 15px;
@@ -132,22 +137,235 @@ header .inner .hd_bottom .pc .gnb .depth01 .depth02 li {
     margin-bottom: 10px;
 }
 .main_visual div p {
-    font-family: 'GmarketSansMedium';
+    font-family: 'LINESeedKR-Bd';
     font-size: 25px;
     margin-bottom: 10px;
 }
-.main_visual div span {}
+.main_visual div span {
+    font-family: 'SUIT-Regular';
+}
 .main_visual div a {
-    font-family: 'GmarketSansLight';
+    font-family: 'LINESeedKR-Bd';
     display: block; /* span태그 인라인요소라서 블럭요소로 변경 */
     width: 150px; height: 45px;
     border: 2px solid #333;
     border-radius: 40px;
     text-align: center;
-    line-height: 40px;
+    line-height: 48px;
     margin-top: 100px;
+    color: #563e71;
 }
 .main_visual img {
     width: 100%; height: 100%;
     object-fit: cover;
 } /* 1) 여기까지 작성하면 header가 안나올 것 -> 메인비주얼 z-index 설정해야 함! */
+
+
+/* 💛.best */
+.best{
+    max-width: 1600px;
+    width: 95%;
+    margin: 150px auto;
+    position: relative;
+}
+.best > a {
+    display: block; /* a태그는 인라인요소라서 블럭요소로 변경 */
+    width: 140px; height: 45px;
+    border: 1px solid #333;
+    border-radius: 40px;
+    text-align: center;
+    line-height: 45px;
+    position: absolute; /* 포지션을 줄 수도 있고, html에서 감싸주는 태그하고 flex-end해도됨 */
+    top: 0; right: 0;
+}
+.best h3 {
+    font-size: 50px;
+    margin: 50px 0 40px; /* 위쪽은 부모의 마진값이랑 중첩되어 적용이 안됨 */ 
+    padding-top: 50px; /* 그래서, 패딩값으로 잡아줌! */
+}
+.best .best_menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* 화면줄였을 때 공간이 부족할 때 사용! 음절이 아닌 단어로 떨어지도록 */
+}
+.best .best_menu li {
+    margin-left: 30px;
+}
+.best .best_menu li:first-child {
+    color: #9135fa;
+}
+.best .list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.best .list .item {
+    width: calc(100% / 4 - 10px);
+}
+.best .list .item figure {
+    width: 100%; height: 420px;
+}
+.best .list .item figure img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+/* 텍스트의 경우에는 img에 h값을 강제로 잡아주어도 되나, 이미지 등은 이런 과정을 줄이기 위해서
+   부모인 figure에 높이값 잡고 화면사이즈가 변화되도 자식이 부모값을 따라가도록 100% 맞춤 */
+.best .list .item .text h4 {
+    font-size: 20px;
+    margin: 20px 0 30px;
+}
+.best .list .item .text .price {
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.best .list .item .text .price p {
+    color: #838383;
+    text-decoration: line-through; /* ✔ 취소선 잡아주기 */
+}
+.best .list .item .text .price div span {
+    color: red;
+    font-weight: bold; /* ✔ 글자굵게 */
+    margin-right: 10px;
+}
+
+
+/* 💛 header, main_visual, .best에 대한 미디어쿼리 */
+
+@media all and (max-width:1024px) {
+    header .pc {display: none;}
+    header i.mobile { 
+        display: block;
+        font-size: 40px;
+        color: #d53232;
+    }
+    header i.mobile span {
+        position: absolute;
+        left: -999999px;
+    }
+    .best {
+        margin: 100px auto;
+    }
+    .best .list .item figure {
+        /* ↑ 위 작성한 태그랑 이름 같이 꼭 작성해야 함! (밑으로도 쭉쭉) */
+        height: 250px;
+    }
+    .best .list .item .text h4 {
+        height: 50px;
+    }
+} /* 1024px 이하 */
+
+@media all and (max-width:767px) {
+    header .inner .hd_top {
+        height: 30px;
+        font-size: 13px;
+    }
+    header .inner .hd_bottom {
+        height: 50px;
+    }
+    header .inner .hd_bottom h1 a img {
+        height: 25px;
+    }
+
+    .main_visual div {
+        text-align: center;
+        background-color: #ffffff74;
+        backdrop-filter: blur(5px);
+        border-radius: 20px;
+    }
+    .main_visual div h2 { 
+        font-size: 38px; 
+        margin-top: 40px;
+    }
+    .main_visual div p { 
+        font-size: 21px;
+        margin-bottom: 0;
+    }
+    .main_visual div a {
+        margin: 70px auto; 
+    /* 기존태그에 w값과 diplay:block 잡혀있으니 마진 0 auto로 중앙정렬 가능 */
+    background-color: #ffffffd3;
+    border: 1px solid #563e71;
+    box-shadow: 0px 5px 8px #563e71a4;
+    }
+
+    .best {
+        margin: 60px auto;
+    }
+    .best > a {
+        width: 100px; height: 35px;
+        line-height: 35px;
+        font-size: 13px; /* 최소한 13px 까지 줄이기, 그아래는 모바일에 글자안보임 */
+    }
+    .best h3 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    .best .best_menu {
+        justify-content: flex-start;
+    }
+    .best .best_menu li {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+    .best .list .item {
+        width: calc(100% /2 - 5px);
+    }
+    .best .list .item:nth-child(2) ~ .item {
+    /* ✔ 뒤에 따라오는 선택자를 어떻게 할지 적용할 때
+         + 는 바로뒤에 오는 형제선택자만!
+         ~ 은 뒤에 오는 모든 형제선택자 */
+        display: none;
+    }
+    .best .list .item figure {
+        height: 50vw;
+         /* ✔ vw는 브라우저 넓이 기준으로 반응 (h, 마진, 패딩 값에 다 사용가능)
+               vh는 브라우저의 높이 기준으로 반응 */
+         /* 화면이 넓어지거나 좁아져도 비율이나 변화가 없음! (화면 브라우저에 반응하기 때문)  */
+    }
+} /* 767px 이하 */
+
+@media all and (max-width:414px) {
+    .main_visual div h2 {font-size: 30px;}
+    .best h3 {font-size: 30px;}
+    .best .best_menu li {font-size: 14px;}
+    .best .list .item .text h4 {
+        font-size: 16px;
+        height: auto; /* h값 초기화, 해제할때 auto로! */
+        margin: 10px 0 20px;
+    }
+    .best .list .item .text .price {font-size: 16px;}
+} /* 414px 이하 */
+
+/* 📞최소 260px(갤럭시폴드 한쪽 화면 기준)까지 반응형 잡아가고 있음 */
+
+
+/* 💛 텍스트 애니메이션 */
+.slide_text {
+    background-color: #743ab6;
+    color: #fff;
+    padding: 20px 0;
+}
+.slide_text ul {
+    white-space: nowrap;
+    /* ✔ 2) 텍스트 한줄로 만들어 주는 태그 */
+    animation: slideText 60s infinite linear; /* infinite(무한반복), linear(일정한 속도) */
+    /* 🔸 1) 애니메이션 : 이름 시간 횟수 속도 */
+}
+/* 🔸 2) 실행문작성↓ */
+@keyframes slideText {
+    /* 시작 시점 */
+    0% {
+        transform: translateX(0);
+    }
+    /* 끝나는 시점 */
+    100% {
+        transform: translateX(-100%);  /* 100%은 왼쪽->오른쪽 */
+    }
+}
+.slide_text ul li {
+    display: inline-block; /* ✔ 1) display하면 공간이 부족하여 여러줄로 떨어지게 되는데 */
+}
